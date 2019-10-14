@@ -34,6 +34,7 @@ public class ModelManagerTest {
         assertThrows(NullPointerException.class, () -> modelManager.setUserPrefs(null));
     }
 
+
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();

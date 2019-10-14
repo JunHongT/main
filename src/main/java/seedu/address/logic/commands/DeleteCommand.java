@@ -1,16 +1,15 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 
 /**
@@ -22,7 +21,7 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the eatery identified by the name of the eatery."
-            + "Parameters: "  + PREFIX_NAME + " NAME \n"
+            + "Parameters: " + PREFIX_NAME + " NAME \n"
             + "Example: " + COMMAND_WORD + " \\n Two Chefs Eating Place";
 
 
