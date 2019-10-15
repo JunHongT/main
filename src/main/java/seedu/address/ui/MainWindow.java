@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private PersonListPanel todoListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,6 +44,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane todoListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -107,18 +111,38 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            personListPanel = new PersonListPanel(logic.getFilteredPersonList());
 
-        resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+            personListPanelPlaceholder.getChildren().addAll(personListPanel.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+            resultDisplay = new ResultDisplay();
+            resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+            StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+            statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
+            CommandBox commandBox = new CommandBox(this::executeCommand);
+            commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
     }
+
+
+    /**
+     * Fills up all the placeholders of this window.
+     */
+    void fillDataParts() {
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        todoListPanel = new PersonListPanel(logic.getFilteredTodoList());
+
+
+        if(logic.modeStatus()) {
+            personListPanelPlaceholder.getChildren().addAll(personListPanel.getRoot());
+        } else {
+            personListPanelPlaceholder.getChildren().addAll(todoListPanel.getRoot());
+        }
+    }
+
 
     /**
      * Sets the default size based on {@code guiSettings}.
@@ -183,6 +207,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            fillDataParts();
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

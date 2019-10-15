@@ -21,7 +21,8 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private FilteredList<Person> filteredTodo;
+    private FilteredList<Person> filteredPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredTodo = new FilteredList<>(this.addressBook.getTodoList());
     }
 
     public ModelManager() {
@@ -91,6 +93,7 @@ public class ModelManager implements Model {
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
+
         return addressBook.hasPerson(person);
     }
 
@@ -124,10 +127,31 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+    public  ObservableList<Person> getFilteredTodoList() {
+        return filteredTodo;
     }
+
+    @Override
+    public void updateFilteredPersonList(Predicate<Person> predicate) {
+       if (addressBook.modeStatus()) {
+           filteredPersons.setPredicate(predicate);
+       } else {
+           filteredPersons.setPredicate(predicate.negate());
+       }
+    }
+
+    //=========== General =============================================================
+
+    @Override
+    public void toggle() {
+        addressBook.toggle();
+    }
+
+    @Override
+    public boolean modeStatus() {
+        return addressBook.modeStatus();
+    }
+
 
     @Override
     public boolean equals(Object obj) {
