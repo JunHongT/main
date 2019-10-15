@@ -34,7 +34,7 @@ public interface Logic {
     ObservableList<Eatery> getFilteredEateryList();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredTodoList();
+    ObservableList<Eatery> getFilteredTodoList();
 
     boolean modeStatus();
 

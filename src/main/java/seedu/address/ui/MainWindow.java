@@ -110,17 +110,17 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
 
-            eateryListPanel = new EateryListPanel(logic.getFilteredEateryList());
-            eateryListPanelPlaceholder.getChildren().add(eateryListPanel.getRoot());
+        eateryListPanel = new EateryListPanel(logic.getFilteredEateryList());
+        eateryListPanelPlaceholder.getChildren().add(eateryListPanel.getRoot());
 
-            resultDisplay = new ResultDisplay();
-            resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        resultDisplay = new ResultDisplay();
+        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-            StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-            statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-            CommandBox commandBox = new CommandBox(this::executeCommand);
-            commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
     }
 
@@ -133,7 +133,7 @@ public class MainWindow extends UiPart<Stage> {
         todoListPanel = new EateryListPanel(logic.getFilteredTodoList());
 
 
-        if(logic.modeStatus()) {
+        if (logic.modeStatus()) {
             eateryListPanelPlaceholder.getChildren().addAll(eateryListPanel.getRoot());
         } else {
             eateryListPanelPlaceholder.getChildren().addAll(todoListPanel.getRoot());

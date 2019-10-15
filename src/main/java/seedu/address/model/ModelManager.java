@@ -129,7 +129,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public  ObservableList<Eatery> getFilteredTodoList() {
+    public ObservableList<Eatery> getFilteredTodoList() {
         return filteredTodo;
     }
 

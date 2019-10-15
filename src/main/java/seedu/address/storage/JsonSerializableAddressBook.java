@@ -1,9 +1,7 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -15,9 +13,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 
 import seedu.address.model.eatery.Eatery;
-import seedu.address.model.eatery.Name;
-import seedu.address.model.eatery.Address;
-import seedu.address.model.tag.Tag;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -28,6 +23,7 @@ class JsonSerializableAddressBook {
     public static final String MESSAGE_DUPLICATE_EATERY = "Eaterys list contains duplicate eatery(ies).";
 
     private final List<JsonAdaptedEatery> eateries = new ArrayList<>();
+    private final List<JsonAdaptedEatery> todos = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given eateries.
@@ -44,10 +40,8 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         eateries.addAll(source.getEateryList().stream().map(JsonAdaptedEatery::new).collect(Collectors.toList()));
-        HashSet<Tag> temp = new HashSet<>();
-        temp.add(new Tag("break"));
-        eateries.add(new JsonAdaptedEatery(new Eatery(new Name("break"), new Address("break"), temp)));
-        eateries.addAll(source.getTodoList().stream().map(JsonAdaptedEatery::new).collect(Collectors.toList()));
+
+        todos.addAll(source.getTodoList().stream().map(JsonAdaptedEatery::new).collect(Collectors.toList()));
     }
 
     /**
@@ -64,6 +58,16 @@ class JsonSerializableAddressBook {
             }
             addressBook.addEatery(eatery);
         }
+
+        for (JsonAdaptedEatery jsonAdaptedEatery : todos) {
+            Eatery eatery = jsonAdaptedEatery.toModelType();
+            addressBook.toggle();
+            if (addressBook.hasEatery(eatery)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_EATERY);
+            }
+            addressBook.addEatery(eatery);
+        }
+
         return addressBook;
     }
 

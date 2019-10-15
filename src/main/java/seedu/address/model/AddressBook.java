@@ -2,25 +2,14 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-<<<<<<< HEAD
+
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.eatery.Address;
-import seedu.address.model.eatery.Name;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.tag.Tag;
-=======
 import seedu.address.model.eatery.Eatery;
 import seedu.address.model.eatery.UniqueEateryList;
->>>>>>> upstream/master
 
 /**
  * Wraps all data at the address-book level
@@ -65,23 +54,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the eatery list with {@code eateries}.
      * {@code eateries} must not contain duplicate eateries.
      */
-    public void setEateries(List<Eatery> eateries) {
-        HashSet<Tag> temp = new HashSet<>();
-        temp.add(new Tag("break"));
-        Eatery breakLine = new Eatery(new Name("break"), new Address("break"), temp);
-        int index = eateries.indexOf(breakLine);
-        ArrayList<Eatery> personList = new ArrayList<>();
-        ArrayList<Eatery> todoList = new ArrayList<>();
-        for (int i  = 0; i < eateries.size(); i++) {
-            if (i < index || index < 0) {
-                personList.add(eateries.get(i));
-            } else if (i > index) {
-                todoList.add(eateries.get(i));
-            }
-        }
-
-        this.eateries.setEateries(personList);
-        this.todo.setEateries(todoList);
+    public void setEateries(List<Eatery> eateries, List<Eatery> todos) {
+        this.eateries.setEateries(eateries);
+        this.todo.setEateries(todos);
 
     }
 
@@ -90,11 +65,10 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-        setEateries(newData.getEateryList());
+        setEateries(newData.getEateryList(), newData.getTodoList());
     }
 
     //// eatery-level operations
-
     /**
      * Returns true if a eatery with the same identity as {@code eatery} exists in the address book.
      */
@@ -147,6 +121,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //// util methods
+    /**
+     * Toggle between Main mode and To-do mode.
+     */
     public void toggle() {
         isMain = !isMain;
 
