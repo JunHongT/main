@@ -59,9 +59,9 @@ class JsonSerializableAddressBook {
             addressBook.addEatery(eatery);
         }
 
+        addressBook.toggle();
         for (JsonAdaptedEatery jsonAdaptedEatery : todos) {
             Eatery eatery = jsonAdaptedEatery.toModelType();
-            addressBook.toggle();
             if (addressBook.hasEatery(eatery)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_EATERY);
             }
