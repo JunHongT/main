@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.eatery.Eatery;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,8 +21,10 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private FilteredList<Person> filteredTodo;
-    private FilteredList<Person> filteredPersons;
+
+    private FilteredList<Eatery> filteredTodo;
+    private FilteredList<Eatery> filteredEateries;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,7 +37,8 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
+        filteredEateries = new FilteredList<>(this.addressBook.getEateryList());
         filteredTodo = new FilteredList<>(this.addressBook.getTodoList());
     }
 
@@ -91,53 +94,53 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-
-        return addressBook.hasPerson(person);
+    public boolean hasEatery(Eatery eatery) {
+        requireNonNull(eatery);
+        return addressBook.hasEatery(eatery);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deleteEatery(Eatery target) {
+        addressBook.removeEatery(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addEatery(Eatery eatery) {
+        addressBook.addEatery(eatery);
+        updateFilteredEateryList(PREDICATE_SHOW_ALL_EATERIES);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setEatery(Eatery target, Eatery editedEatery) {
+        requireAllNonNull(target, editedEatery);
 
-        addressBook.setPerson(target, editedPerson);
+        addressBook.setEatery(target, editedEatery);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Eatery List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Eatery} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Eatery> getFilteredEateryList() {
+        return filteredEateries;
     }
 
     @Override
-    public  ObservableList<Person> getFilteredTodoList() {
+    public  ObservableList<Eatery> getFilteredTodoList() {
         return filteredTodo;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-       if (addressBook.modeStatus()) {
-           filteredPersons.setPredicate(predicate);
-       } else {
-           filteredPersons.setPredicate(predicate.negate());
-       }
+    public void updateFilteredEateryList(Predicate<Eatery> predicate) {
+        requireNonNull(predicate);
+        if (addressBook.modeStatus()) {
+            filteredEateries.setPredicate(predicate);
+        } else {
+            filteredTodo.setPredicate(predicate);
+        }
     }
 
     //=========== General =============================================================
@@ -169,7 +172,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredEateries.equals(other.filteredEateries);
     }
 
 }

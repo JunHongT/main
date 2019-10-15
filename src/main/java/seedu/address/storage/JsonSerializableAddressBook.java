@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -12,9 +13,10 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+
+import seedu.address.model.eatery.Eatery;
+import seedu.address.model.eatery.Name;
+import seedu.address.model.eatery.Address;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,16 +25,16 @@ import seedu.address.model.tag.Tag;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_EATERY = "Eaterys list contains duplicate eatery(ies).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedEatery> eateries = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given eateries.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableAddressBook(@JsonProperty("eateries") List<JsonAdaptedEatery> eateries) {
+        this.eateries.addAll(eateries);
     }
 
     /**
@@ -41,11 +43,11 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        eateries.addAll(source.getEateryList().stream().map(JsonAdaptedEatery::new).collect(Collectors.toList()));
         HashSet<Tag> temp = new HashSet<>();
         temp.add(new Tag("break"));
-        persons.add(new JsonAdaptedPerson(new Person(new Name("break"), new Address("break"), temp)));
-        persons.addAll(source.getTodoList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        eateries.add(new JsonAdaptedEatery(new Eatery(new Name("break"), new Address("break"), temp)));
+        eateries.addAll(source.getTodoList().stream().map(JsonAdaptedEatery::new).collect(Collectors.toList()));
     }
 
     /**
@@ -55,12 +57,12 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+        for (JsonAdaptedEatery jsonAdaptedEatery : eateries) {
+            Eatery eatery = jsonAdaptedEatery.toModelType();
+            if (addressBook.hasEatery(eatery)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_EATERY);
             }
-            addressBook.addPerson(person);
+            addressBook.addEatery(eatery);
         }
         return addressBook;
     }

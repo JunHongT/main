@@ -8,24 +8,31 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+<<<<<<< HEAD
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.eatery.Address;
+import seedu.address.model.eatery.Name;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.tag.Tag;
+=======
+import seedu.address.model.eatery.Eatery;
+import seedu.address.model.eatery.UniqueEateryList;
+>>>>>>> upstream/master
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameEatery comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
     private boolean isMain;
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private final UniquePersonList persons;
-    private final UniquePersonList todo;
+    private final UniqueEateryList eateries;
+    private final UniqueEateryList todo;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -35,8 +42,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
-        todo = new UniquePersonList();
+        eateries = new UniqueEateryList();
+        todo = new UniqueEateryList();
     }
 
     public AddressBook() {
@@ -44,7 +51,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an AddressBook using the Eaterys in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -55,26 +62,26 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the eatery list with {@code eateries}.
+     * {@code eateries} must not contain duplicate eateries.
      */
-    public void setPersons(List<Person> persons) {
+    public void setEateries(List<Eatery> eateries) {
         HashSet<Tag> temp = new HashSet<>();
         temp.add(new Tag("break"));
-        Person breakLine = new Person(new Name("break"), new Address("break"), temp);
-        int index = persons.indexOf(breakLine);
-        ArrayList<Person> personList = new ArrayList<>();
-        ArrayList<Person> todoList = new ArrayList<>();
-        for (int i  = 0; i < persons.size(); i++) {
+        Eatery breakLine = new Eatery(new Name("break"), new Address("break"), temp);
+        int index = eateries.indexOf(breakLine);
+        ArrayList<Eatery> personList = new ArrayList<>();
+        ArrayList<Eatery> todoList = new ArrayList<>();
+        for (int i  = 0; i < eateries.size(); i++) {
             if (i < index || index < 0) {
-                personList.add(persons.get(i));
+                personList.add(eateries.get(i));
             } else if (i > index) {
-                todoList.add(persons.get(i));
+                todoList.add(eateries.get(i));
             }
         }
 
-        this.persons.setPersons(personList);
-        this.todo.setPersons(todoList);
+        this.eateries.setEateries(personList);
+        this.todo.setEateries(todoList);
 
     }
 
@@ -83,64 +90,60 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
-        setPersons(newData.getPersonList());
+        setEateries(newData.getEateryList());
     }
 
-    //// person-level operations
+    //// eatery-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a eatery with the same identity as {@code eatery} exists in the address book.
      */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
+    public boolean hasEatery(Eatery eatery) {
+        requireNonNull(eatery);
         if (isMain) {
-            return persons.contains(person);
+            return eateries.contains(eatery);
         } else {
-            return todo.contains(person);
+            return todo.contains(eatery);
         }
-
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a eatery to the address book.
+     * The eatery must not already exist in the address book.
      */
-    public void addPerson(Person p) {
-        if(isMain) {
-            persons.add(p);
-        } else {
-            todo.add(p);
-        }
 
+    public void addEatery(Eatery e) {
+        if (isMain) {
+            eateries.add(e);
+        } else {
+            todo.add(e);
+        }
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given eatery {@code target} in the list with {@code editedEatery}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The eatery identity of {@code editedEatery} must not be the same as another existing eatery in the address book.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
+    public void setEatery(Eatery target, Eatery editedEatery) {
+        requireNonNull(editedEatery);
         if (isMain) {
-            persons.setPerson(target, editedPerson);
+            eateries.setEatery(target, editedEatery);
         } else {
-            todo.setPerson(target, editedPerson);
+            todo.setEatery(target, editedEatery);
         }
-
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Person key) {
+    public void removeEatery(Eatery key) {
         if (isMain) {
-            persons.remove(key);
+            eateries.remove(key);
         } else {
             todo.remove(key);
         }
-
     }
 
     //// util methods
@@ -149,7 +152,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         if (isMain) {
             logger.info("================Main Mode=============");
-            logger.info(persons.toString());
+            logger.info(eateries.toString());
         } else {
             logger.info("================Todo Mode=============");
             logger.info(todo.toString());
@@ -162,18 +165,16 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return eateries.asUnmodifiableObservableList().size() + " eateries";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
-
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Eatery> getEateryList() {
+        return eateries.asUnmodifiableObservableList();
     }
 
-    public ObservableList<Person> getTodoList() {
-
+    public ObservableList<Eatery> getTodoList() {
         return todo.asUnmodifiableObservableList();
     }
 
@@ -182,11 +183,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && eateries.equals(((AddressBook) other).eateries));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return eateries.hashCode();
     }
 }

@@ -31,8 +31,9 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
-    private PersonListPanel todoListPanel;
+    private EateryListPanel eateryListPanel;
+    private EateryListPanel todoListPanel;
+
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,10 +44,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
-
-    @FXML
-    private StackPane todoListPanelPlaceholder;
+    private StackPane eateryListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -111,10 +109,9 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-            personListPanel = new PersonListPanel(logic.getFilteredPersonList());
 
-            personListPanelPlaceholder.getChildren().addAll(personListPanel.getRoot());
-
+            eateryListPanel = new EateryListPanel(logic.getFilteredEateryList());
+            eateryListPanelPlaceholder.getChildren().add(eateryListPanel.getRoot());
 
             resultDisplay = new ResultDisplay();
             resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -132,14 +129,14 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillDataParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        todoListPanel = new PersonListPanel(logic.getFilteredTodoList());
+        eateryListPanel = new EateryListPanel(logic.getFilteredEateryList());
+        todoListPanel = new EateryListPanel(logic.getFilteredTodoList());
 
 
         if(logic.modeStatus()) {
-            personListPanelPlaceholder.getChildren().addAll(personListPanel.getRoot());
+            eateryListPanelPlaceholder.getChildren().addAll(eateryListPanel.getRoot());
         } else {
-            personListPanelPlaceholder.getChildren().addAll(todoListPanel.getRoot());
+            eateryListPanelPlaceholder.getChildren().addAll(todoListPanel.getRoot());
         }
     }
 
@@ -184,8 +181,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public EateryListPanel getEateryListPanel() {
+        return eateryListPanel;
     }
 
     /**
