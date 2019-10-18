@@ -159,7 +159,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean modeStatus() {
+        public boolean isMainMode() {
             throw new AssertionError("This method should not be called.");
         }
     }

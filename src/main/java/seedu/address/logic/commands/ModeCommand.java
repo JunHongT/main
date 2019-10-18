@@ -22,7 +22,7 @@ public class ModeCommand extends Command {
         requireNonNull(model);
         model.toggle();
         model.updateFilteredEateryList(PREDICATE_SHOW_ALL_EATERIES);
-        if (model.modeStatus()) {
+        if (model.isMainMode()) {
             return new CommandResult(MESSAGE_SUCCESS_MAIN);
         } else {
             return new CommandResult(MESSAGE_SUCCESS_TODO);

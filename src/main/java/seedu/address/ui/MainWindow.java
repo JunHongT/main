@@ -84,7 +84,6 @@ public class MainWindow extends UiPart<Stage> {
 
     }
 
-
     /**
      * Fills up all the placeholders of this window.
      */
@@ -92,14 +91,12 @@ public class MainWindow extends UiPart<Stage> {
         eateryListPanel = new EateryListPanel(logic.getFilteredEateryList());
         todoListPanel = new EateryListPanel(logic.getFilteredTodoList());
 
-
-        if (logic.modeStatus()) {
+        if (logic.isMainMode()) {
             eateryListPanelPlaceholder.getChildren().addAll(eateryListPanel.getRoot());
         } else {
             eateryListPanelPlaceholder.getChildren().addAll(todoListPanel.getRoot());
         }
     }
-
 
     /**
      * Sets the default size based on {@code guiSettings}.

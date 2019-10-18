@@ -67,8 +67,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public boolean modeStatus() {
-        return model.modeStatus();
+    public boolean isMainMode() {
+        return model.isMainMode();
     }
 
     @Override

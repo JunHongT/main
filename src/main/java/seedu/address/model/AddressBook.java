@@ -17,8 +17,8 @@ import seedu.address.model.eatery.UniqueEateryList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private boolean isMain;
-    private final Logger logger = LogsCenter.getLogger(getClass());
+    private boolean isMainMode = true;
+    private final Logger logger = LogsCenter.getLogger(AddressBook.class);
 
     private final UniqueEateryList eateries;
     private final UniqueEateryList todo;
@@ -35,16 +35,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         todo = new UniqueEateryList();
     }
 
-    public AddressBook() {
-        isMain = true;
-    }
+    public AddressBook() {}
 
     /**
      * Creates an AddressBook using the Eaterys in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
-        isMain = true;
         resetData(toBeCopied);
     }
 
@@ -74,7 +71,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasEatery(Eatery eatery) {
         requireNonNull(eatery);
-        if (isMain) {
+        if (isMainMode) {
             return eateries.contains(eatery);
         } else {
             return todo.contains(eatery);
@@ -87,7 +84,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
 
     public void addEatery(Eatery e) {
-        if (isMain) {
+        if (isMainMode) {
             eateries.add(e);
         } else {
             todo.add(e);
@@ -101,7 +98,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setEatery(Eatery target, Eatery editedEatery) {
         requireNonNull(editedEatery);
-        if (isMain) {
+        if (isMainMode) {
             eateries.setEatery(target, editedEatery);
         } else {
             todo.setEatery(target, editedEatery);
@@ -113,7 +110,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removeEatery(Eatery key) {
-        if (isMain) {
+        if (isMainMode) {
             eateries.remove(key);
         } else {
             todo.remove(key);
@@ -125,9 +122,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Toggle between Main mode and To-do mode.
      */
     public void toggle() {
-        isMain = !isMain;
+        isMainMode = !isMainMode;
 
-        if (isMain) {
+        if (isMainMode) {
             logger.info("================Main Mode=============");
             logger.info(eateries.toString());
         } else {
@@ -136,8 +133,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
     }
 
-    public boolean modeStatus() {
-        return isMain;
+    public boolean isMainMode() {
+        return isMainMode;
     }
 
     @Override

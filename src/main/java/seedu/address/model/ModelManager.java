@@ -136,7 +136,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredEateryList(Predicate<Eatery> predicate) {
         requireNonNull(predicate);
-        if (addressBook.modeStatus()) {
+        if (addressBook.isMainMode()) {
             filteredEateries.setPredicate(predicate);
         } else {
             filteredTodo.setPredicate(predicate);
@@ -151,8 +151,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean modeStatus() {
-        return addressBook.modeStatus();
+    public boolean isMainMode() {
+        return addressBook.isMainMode();
     }
 
 

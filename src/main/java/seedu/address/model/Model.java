@@ -96,5 +96,5 @@ public interface Model {
     /**
      * Return status of mode, Main or To-do.
      * */
-    boolean modeStatus();
+    boolean isMainMode();
 }
