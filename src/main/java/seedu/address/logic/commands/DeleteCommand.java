@@ -33,23 +33,15 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Eatery> lastShownList;
+        List<Eatery> lastShownList = model.isMainMode() ? model.getFilteredEateryList() : model.getFilteredTodoList();
 
-        if (model.isMainMode()) {
-            lastShownList = model.getFilteredEateryList();
-            if (targetIndex.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_EATERY_DISPLAYED_INDEX);
-            }
-        } else {
-            lastShownList = model.getFilteredTodoList();
-            if (targetIndex.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_EATERY_DISPLAYED_INDEX);
-            }
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_EATERY_DISPLAYED_INDEX);
         }
+
         Eatery eateryToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteEatery(eateryToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_EATERY_SUCCESS, eateryToDelete));
-
     }
 
     @Override

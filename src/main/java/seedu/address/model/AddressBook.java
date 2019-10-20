@@ -54,7 +54,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setEateries(List<Eatery> eateries, List<Eatery> todos) {
         this.eateries.setEateries(eateries);
         this.todo.setEateries(todos);
-
     }
 
     /**
