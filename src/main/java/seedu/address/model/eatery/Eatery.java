@@ -34,6 +34,20 @@ public class Eatery {
         this.tags.addAll(tags);
     }
 
+	/**
+	 * Every field must be present and not null.
+	 * Used when adding a eatery to to-do list.
+	 * Do not require category.
+	 */
+	public Eatery(Name name, Address address, Set<Tag> tags) {
+		requireAllNonNull(name, address, tags);
+		this.name = name;
+		this.isOpen = true;
+		this.address = address;
+		this.tags.addAll(tags);
+		this.category = new Category("Not Applicable");
+	}
+
     /**
      * Every field must be present and not null.
      * Used for editing open or close
