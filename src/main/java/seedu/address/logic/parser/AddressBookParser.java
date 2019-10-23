@@ -47,48 +47,50 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
-		switch (commandWord) {
+        switch (commandWord) {
 
-			case AddCommand.COMMAND_WORD:
-				if (isMainMode) {
-					return new AddCommandParser().parse(arguments);
-				} else {
-					return new AddTodoCommandParser().parse(arguments);
-				}
+        case AddCommand.COMMAND_WORD:
+            if (isMainMode) {
+                return new AddCommandParser().parse(arguments);
+            } else {
+                return new AddTodoCommandParser().parse(arguments);
+            }
 
-			case EditCommand.COMMAND_WORD:
-				return new EditCommandParser().parse(arguments);
+        case EditCommand.COMMAND_WORD:
+            return new EditCommandParser().parse(arguments);
 
-			case DeleteCommand.COMMAND_WORD:
-				return new DeleteCommandParser().parse(arguments);
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommandParser().parse(arguments);
 
-			case ClearCommand.COMMAND_WORD:
-				return new ClearCommand();
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
 
-			case FindCommand.COMMAND_WORD:
-				return new FindCommandParser().parse(arguments);
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
 
-			case ListCommand.COMMAND_WORD:
-				return new ListCommand();
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
 
-			case ExitCommand.COMMAND_WORD:
-				return new ExitCommand();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
-			case HelpCommand.COMMAND_WORD:
-				return new HelpCommand();
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
-			case CloseCommand.COMMAND_WORD:
-				return new CloseCommandParser().parse(arguments);
+        case CloseCommand.COMMAND_WORD:
+            return new CloseCommandParser().parse(arguments);
 
-			case ModeCommand.COMMAND_WORD:
-				return new ModeCommand();
+        case ModeCommand.COMMAND_WORD:
+            return new ModeCommand();
 
-			case ReviewCommand.COMMAND_WORD:
-            	return new ReviewCommandParser().parse(arguments);
+        case ReviewCommand.COMMAND_WORD:
+            return new ReviewCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
+
+
     }
 
 }
