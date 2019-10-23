@@ -245,7 +245,7 @@ image::ModeCommandActivity.png[]
 ** Cons: More effort required for maintenance purposes. Need to make sure that data from main list should not go into todo list, and vice versa
 
 //end::modeCommand[]
-=======
+
 // tag::add[]
 === Add eatery feature
 ==== Implementation
