@@ -31,8 +31,8 @@ public class AddTodoCommandParser implements Parser<AddCommand> {
 			ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS,PREFIX_CATEGORY, PREFIX_TAG);
 
 		if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS)
-			|| !argMultimap.getPreamble().isEmpty()) {
-			throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+			|| arePrefixesPresent(argMultimap, PREFIX_CATEGORY) || !argMultimap.getPreamble().isEmpty()) {
+			throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE_TODO));
 		}
 
 		Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
