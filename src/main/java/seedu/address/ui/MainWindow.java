@@ -147,6 +147,14 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Display pending command generated from to-do in commandbox.
+     */
+    private void handleSaveTodo(String pendingCommand) {
+        commandBox = new CommandBox(this::executeCommand, pendingCommand);
+        commandBoxPlaceholder.getChildren().addAll(commandBox.getRoot());
+    }
+
     public EateryListPanel getEateryListPanel() {
         return eateryListPanel;
     }
@@ -171,9 +179,8 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.wantToSave()) {
-                commandBox.setPendingCommand(commandResult.getFeedbackToUser());
+                handleSaveTodo(commandResult.getFeedbackToUser());
             }
-            System.out.println("Testing content :::  " + commandBox.getContent());
 
             fillDataParts();
             return commandResult;

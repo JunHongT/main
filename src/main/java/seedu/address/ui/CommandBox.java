@@ -8,8 +8,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-import static java.util.Objects.requireNonNull;
-
 /**
  * The UI component that is responsible for receiving user command inputs.
  */
@@ -30,15 +28,12 @@ public class CommandBox extends UiPart<Region> {
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
     }
 
-    /**
-     * Set the content of commandbox to a certain text.
-      * @param feedbackToUser Result generated from a commandResult.
-     */
-    public void setPendingCommand(String feedbackToUser) {
-        requireNonNull(feedbackToUser);
-        System.out.println("REPLACING COMMANDBOX - " + feedbackToUser);
-        commandTextField.setText(feedbackToUser);
-        System.out.println("Content of commandbox - " +commandTextField.getText());
+    public CommandBox(CommandExecutor commandExecutor, String pending) {
+        super(FXML);
+        this.commandExecutor = commandExecutor;
+        // calls #setStyleToDefault() whenever there is a change to the text of the command box.
+        commandTextField.setText(pending);
+        commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
     }
 
     /**

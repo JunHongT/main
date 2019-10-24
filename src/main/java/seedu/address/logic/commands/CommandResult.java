@@ -17,7 +17,7 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    /** The application should save. */
+    /** The application should save to-do eatery to eatery list. */
     private final boolean wantToSave;
 
     /**

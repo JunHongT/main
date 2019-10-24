@@ -13,16 +13,8 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.CloseCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.commands.EditCommand.EditEateryDescriptor;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.eatery.Eatery;
 import seedu.address.model.eatery.NameContainsKeywordsPredicate;
@@ -94,6 +86,19 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD, true) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3", true) instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_mode() throws Exception {
+        assertTrue(parser.parseCommand(ModeCommand.COMMAND_WORD, true) instanceof ModeCommand);
+        assertTrue(parser.parseCommand(ModeCommand.COMMAND_WORD + " 3", true) instanceof ModeCommand);
+    }
+
+    @Test
+    public void parseCommand_saveTodo() throws Exception {
+        SaveTodoCommand command = (SaveTodoCommand) parser.parseCommand(
+            SaveTodoCommand.COMMAND_WORD + " " + INDEX_FIRST_EATERY.getOneBased(), false);
+        assertEquals(new SaveTodoCommand(INDEX_FIRST_EATERY), command);
     }
 
     @Test

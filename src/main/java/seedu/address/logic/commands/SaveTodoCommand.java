@@ -1,9 +1,12 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -12,9 +15,6 @@ import seedu.address.model.Model;
 import seedu.address.model.eatery.Eatery;
 import seedu.address.model.eatery.Tag;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Deletes a eatery identified using it's displayed index from the address book.
@@ -29,8 +29,6 @@ public class SaveTodoCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_INVALID_MODE = "Save command is not available in main mode";
-
-    public static final String MESSAGE_SAVE_EATERY_SUCCESS = "Eatery to save: %1$s";
 
     private final Index targetIndex;
 
@@ -58,8 +56,11 @@ public class SaveTodoCommand extends Command {
             tags.append(PREFIX_TAG + " " + tag.getName() + " ");
         }
         String pendingCommand = String.format("add %s %s %s %s %s %s",
-            PREFIX_NAME, name, PREFIX_ADDRESS, address, PREFIX_CATEGORY, tags.toString());
+            PREFIX_NAME, name, PREFIX_ADDRESS, address, tags.toString(), PREFIX_CATEGORY);
+
+        model.deleteEatery(eateryToSave);
         model.toggle();
+
         return new CommandResult(pendingCommand, false, false, true);
     }
 
