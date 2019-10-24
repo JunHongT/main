@@ -4,6 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_EATBOOK;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_EATBOOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_EATBOOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_EATBOOK;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EATERY;
 
@@ -14,13 +18,23 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddFeedCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.CloseCommand;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteFeedCommand;
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditEateryDescriptor;
+
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.eatery.Eatery;
 import seedu.address.model.eatery.NameContainsKeywordsPredicate;
+import seedu.address.model.feed.Feed;
 import seedu.address.testutil.EateryBuilder;
 import seedu.address.testutil.EateryUtil;
 import seedu.address.testutil.EditEateryDescriptorBuilder;
+import seedu.address.testutil.FeedBuilder;
 
 public class AddressBookParserTest {
 
@@ -99,6 +113,24 @@ public class AddressBookParserTest {
         SaveTodoCommand command = (SaveTodoCommand) parser.parseCommand(
             SaveTodoCommand.COMMAND_WORD + " " + INDEX_FIRST_EATERY.getOneBased(), false);
         assertEquals(new SaveTodoCommand(INDEX_FIRST_EATERY), command);
+    }
+
+    @Test
+    public void parseCommand_addfeed() throws Exception {
+        Feed feed = new FeedBuilder().withName(VALID_NAME_EATBOOK).withAddress(VALID_ADDRESS_EATBOOK).build();
+        String input = AddFeedCommand.COMMAND_WORD + NAME_DESC_EATBOOK + ADDRESS_DESC_EATBOOK;
+
+        AddFeedCommand expectedCommand = new AddFeedCommand(feed);
+        AddFeedCommand command = (AddFeedCommand) parser.parseCommand(input);
+
+        assertEquals(expectedCommand, command);
+    }
+
+    @Test
+    public void parseCommand_deletefeed() throws Exception {
+        DeleteFeedCommand command = (DeleteFeedCommand) parser.parseCommand(
+                DeleteFeedCommand.COMMAND_WORD + NAME_DESC_EATBOOK, true);
+        assertEquals(new DeleteFeedCommand(VALID_NAME_EATBOOK), command);
     }
 
     @Test
