@@ -1,7 +1,21 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.testutil.TypicalEateries.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalFeeds.getTypicalFeedList;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EATERY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EATERY;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
@@ -10,18 +24,10 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.eatery.Eatery;
 import seedu.address.model.eatery.Tag;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
-import static seedu.address.testutil.TypicalEateries.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalFeeds.getTypicalFeedList;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EATERY;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EATERY;
 
 /**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
- * {@code DeleteCommand}.
+ * Contains integration tests and unit tests for
+ * {@code SaveTodoCommand}.
  */
 public class SaveTodoCommandTest {
 

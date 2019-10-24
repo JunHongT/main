@@ -17,7 +17,6 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.*;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddFeedCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -26,6 +25,12 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteFeedCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditEateryDescriptor;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ModeCommand;
+import seedu.address.logic.commands.SaveTodoCommand;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.eatery.Eatery;
@@ -121,7 +126,7 @@ public class AddressBookParserTest {
         String input = AddFeedCommand.COMMAND_WORD + NAME_DESC_EATBOOK + ADDRESS_DESC_EATBOOK;
 
         AddFeedCommand expectedCommand = new AddFeedCommand(feed);
-        AddFeedCommand command = (AddFeedCommand) parser.parseCommand(input);
+        AddFeedCommand command = (AddFeedCommand) parser.parseCommand(input, true);
 
         assertEquals(expectedCommand, command);
     }
