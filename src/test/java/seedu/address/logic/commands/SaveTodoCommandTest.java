@@ -59,7 +59,8 @@ public class SaveTodoCommandTest {
         String expectedMessage = String.format("add %s %s %s %s %s %s",
             PREFIX_NAME, name, PREFIX_ADDRESS, address, tags.toString(), PREFIX_CATEGORY);
 
-        assertCommandSuccess(saveTodoCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(saveTodoCommand, model,
+            SaveTodoCommand.MESSAGE_REMINDER_TO_USER + expectedMessage, expectedModel);
     }
 
     @Test
@@ -99,12 +100,4 @@ public class SaveTodoCommandTest {
         assertFalse(saveFirstCommand.equals(saveSecondCommand));
     }
 
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoEatery(Model model) {
-        model.updateFilteredEateryList(p -> false);
-
-        assertTrue(model.getFilteredEateryList().isEmpty());
-    }
 }
