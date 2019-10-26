@@ -5,6 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_CATEGORY_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.CATEGORY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -96,7 +97,7 @@ public class AddTodoCommandParserTest {
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
 
         // invalid category
-        assertParseFailure(parser, NAME_DESC_BOB + ADDRESS_DESC_BOB + INVALID_CATEGORY_DESC
+        assertParseFailure(parser, NAME_DESC_BOB + ADDRESS_DESC_BOB + CATEGORY_DESC
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE_TODO));
 
