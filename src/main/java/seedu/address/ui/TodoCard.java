@@ -14,7 +14,7 @@ import java.util.Comparator;
  */
 public class TodoCard extends UiPart<Region> {
 
-    private static final String FXML = "EateryListCard.fxml";
+    private static final String FXML = "TodoListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.

@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  * Panel containing the list of eateries.
  */
 public class TodoListPanel extends UiPart<Region> {
-    private static final String FXML = "EateryListPanel.fxml";
+    private static final String FXML = "TodoListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(TodoListPanel.class);
 
     @FXML
