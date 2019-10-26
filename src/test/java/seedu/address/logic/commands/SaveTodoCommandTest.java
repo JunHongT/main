@@ -42,7 +42,7 @@ public class SaveTodoCommandTest {
     }
 
     @Test
-    public void execute_validIndex_success() {
+    public void execute_validIndexUnfilteredList_success() {
         Eatery eateryToSave = model.getFilteredTodoList().get(INDEX_FIRST_EATERY.getZeroBased());
         SaveTodoCommand saveTodoCommand = new SaveTodoCommand(INDEX_FIRST_EATERY);
 
@@ -56,15 +56,15 @@ public class SaveTodoCommandTest {
         for (Tag tag : eateryToSave.getTags()) {
             tags.append(PREFIX_TAG + " " + tag.getName() + " ");
         }
-        String expectedMessage = String.format("add %s %s %s %s %s %s",
+        String pendingCommand = String.format("add %s %s %s %s %s %s",
             PREFIX_NAME, name, PREFIX_ADDRESS, address, tags.toString(), PREFIX_CATEGORY);
 
-        assertCommandSuccess(saveTodoCommand, model,
-            SaveTodoCommand.MESSAGE_REMINDER_TO_USER + expectedMessage, expectedModel);
+        String expectedMessage = SaveTodoCommand.MESSAGE_REMINDER_TO_USER + pendingCommand;
+        assertCommandSuccess(saveTodoCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_invalidIndex_throwsCommandException() {
+    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTodoList().size() + 1);
         SaveTodoCommand saveTodoCommand = new SaveTodoCommand(outOfBoundIndex);
 
