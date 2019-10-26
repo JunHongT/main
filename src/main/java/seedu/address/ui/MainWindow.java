@@ -28,7 +28,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private EateryListPanel eateryListPanel;
-    private EateryListPanel todoListPanel;
+    private TodoListPanel todoListPanel;
 
     private ResultDisplay resultDisplay;
     private FeedPostListPanel feedPostListPanel;
@@ -97,7 +97,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillDataParts() {
         eateryListPanel = new EateryListPanel(logic.getFilteredEateryList());
-        todoListPanel = new EateryListPanel(logic.getFilteredTodoList());
+        todoListPanel = new TodoListPanel(logic.getFilteredTodoList());
 
         if (logic.isMainMode()) {
             eateryListPanelPlaceholder.getChildren().addAll(eateryListPanel.getRoot());
