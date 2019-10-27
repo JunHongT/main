@@ -8,11 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-<<<<<<< HEAD
-import static seedu.address.testutil.TypicalEateries.getTypicalAddressBook;
-=======
 import static seedu.address.testutil.TypicalEateries.getTypicalOpenAddressBook;
->>>>>>> upstream/master
 import static seedu.address.testutil.TypicalFeeds.getTypicalFeedList;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EATERY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EATERY;
