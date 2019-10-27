@@ -8,7 +8,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+<<<<<<< HEAD
 import static seedu.address.testutil.TypicalEateries.getTypicalAddressBook;
+=======
+import static seedu.address.testutil.TypicalEateries.getTypicalOpenAddressBook;
+>>>>>>> upstream/master
 import static seedu.address.testutil.TypicalFeeds.getTypicalFeedList;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EATERY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EATERY;
@@ -31,18 +35,18 @@ import seedu.address.model.eatery.Tag;
  */
 public class SaveTodoCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalFeedList(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalOpenAddressBook(), getTypicalFeedList(), new UserPrefs());
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), getTypicalFeedList(), new UserPrefs());
+        model = new ModelManager(getTypicalOpenAddressBook(), getTypicalFeedList(), new UserPrefs());
         if (model.isMainMode()) {
             model.toggle();
         }
     }
 
     @Test
-    public void execute_validIndex_success() {
+    public void execute_validIndexUnfilteredList_success() {
         Eatery eateryToSave = model.getFilteredTodoList().get(INDEX_FIRST_EATERY.getZeroBased());
         SaveTodoCommand saveTodoCommand = new SaveTodoCommand(INDEX_FIRST_EATERY);
 
@@ -56,14 +60,16 @@ public class SaveTodoCommandTest {
         for (Tag tag : eateryToSave.getTags()) {
             tags.append(PREFIX_TAG + " " + tag.getName() + " ");
         }
-        String expectedMessage = String.format("add %s %s %s %s %s %s",
+
+        String pendingCommand = String.format("add %s %s %s %s %s %s",
             PREFIX_NAME, name, PREFIX_ADDRESS, address, tags.toString(), PREFIX_CATEGORY);
+        String expectedMessage = SaveTodoCommand.MESSAGE_REMINDER_TO_USER + pendingCommand;
 
         assertCommandSuccess(saveTodoCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_invalidIndex_throwsCommandException() {
+    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTodoList().size() + 1);
         SaveTodoCommand saveTodoCommand = new SaveTodoCommand(outOfBoundIndex);
 
@@ -97,14 +103,5 @@ public class SaveTodoCommandTest {
 
         // different eatery -> returns false
         assertFalse(saveFirstCommand.equals(saveSecondCommand));
-    }
-
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoEatery(Model model) {
-        model.updateFilteredEateryList(p -> false);
-
-        assertTrue(model.getFilteredEateryList().isEmpty());
     }
 }

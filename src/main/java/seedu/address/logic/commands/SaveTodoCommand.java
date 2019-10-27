@@ -24,12 +24,22 @@ public class SaveTodoCommand extends Command {
     public static final String COMMAND_WORD = "save";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
+<<<<<<< HEAD
             + ": Save the eatery identified by the index number used in the displayed todo list to eatery list.\n"
+=======
+            + ": Saves the eatery identified by the index number used in the displayed todo list to main list.\n"
+>>>>>>> upstream/master
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_INVALID_MODE = "Save command is not available in main mode";
 
+<<<<<<< HEAD
+=======
+    public static final String MESSAGE_REMINDER_TO_USER = "Please include the category "
+        + "you wanted to add to following command:\n";
+
+>>>>>>> upstream/master
     private final Index targetIndex;
 
     public SaveTodoCommand(Index targetIndex) {
@@ -61,7 +71,12 @@ public class SaveTodoCommand extends Command {
         model.deleteEatery(eateryToSave);
         model.toggle();
 
+<<<<<<< HEAD
         return new CommandResult(pendingCommand, false, false, true);
+=======
+        String res = MESSAGE_REMINDER_TO_USER + pendingCommand;
+        return new CommandResult(res, false, false, true);
+>>>>>>> upstream/master
     }
 
     @Override

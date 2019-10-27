@@ -79,7 +79,7 @@ public class MainWindow extends UiPart<Stage> {
         eateryListPanel = new EateryListPanel(logic.getFilteredEateryList());
         eateryListPanelPlaceholder.getChildren().add(eateryListPanel.getRoot());
 
-        feedPostListPanel = new FeedPostListPanel(logic.getFeedList());
+        feedPostListPanel = new FeedPostListPanel(logic.getFeedList(), logic);
         feedPostListPanelPlaceholder.getChildren().add(feedPostListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -151,7 +151,8 @@ public class MainWindow extends UiPart<Stage> {
      * Display pending command generated from to-do in commandbox.
      */
     private void handleSaveTodo(String pendingCommand) {
-        commandBox = new CommandBox(this::executeCommand, pendingCommand);
+        String[] resTokens = pendingCommand.split(":");
+        commandBox = new CommandBox(this::executeCommand, resTokens[1]);
         commandBoxPlaceholder.getChildren().addAll(commandBox.getRoot());
     }
 
