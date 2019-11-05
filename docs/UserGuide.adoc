@@ -107,7 +107,7 @@ Format: `exit`
 
 === Main Mode
 
-In Main Mode, manipulation of eateries which user had been to will be available. +
+In Main mode, users will be able to manipulate eateries which users have visited. +
 
 ==== Working with Eateries
 ===== Adding an eatery: `add`
@@ -190,13 +190,12 @@ Examples:
 
 ===== Getting a random eatery: `random`
 
-Shows a completely random restaurant - Useful in case you cannot decide what to eat! +
+Shows a completely random restaurant -- Useful in case you cannot decide what to eat! +
 Format: `random`
 
 ===== Viewing an eatery: `show`
 
-Shows an eatery with all its details - Address, category, tags, reviews, external reviews and a map of its location. +
-Format: `show [id]`
+Shows an eatery with all its details i.e. address, category, tags, reviews, external reviews (from Google), and a map of its location.Format: `show [id]`
 
 Examples:
 
@@ -218,7 +217,7 @@ Format: `stats`
 
 === Todo Mode
 
-In Todo Mode, manipulating of eateries which user had yet to visit will be available. +
+In Todo mode, users will be able to manipulate eateries which they have yet to visit. +
 
 ==== Toggling between main and todo modes: `mode`
 
@@ -305,7 +304,7 @@ Examples:
 
 ==== Viewing an eatery: `show`
 
-Shows an eatery with all its details - Address, category, tags, reviews, external reviews and a map of its location. +
+Shows an eatery with all its details i.e. address, category, tags, reviews, external reviews (from Google), and a map of its location.
 Format: `show [id]`
 
 Examples:
