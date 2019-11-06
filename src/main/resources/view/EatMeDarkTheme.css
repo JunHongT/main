@@ -1,5 +1,5 @@
 // Background
-.root, .list-cell, .text-field {
+.root, .list-cell, .text-field, .list-view {
     -fx-background-color: #212121;
 }
 
@@ -26,8 +26,17 @@ Label, TextField {
 }
 
 .hyperlink {
-    -fx-text-fill: orange;
+    -fx-text-fill: #ffca28;
     -fx-font: normal 13 sans-serif;
+}
+
+.hyperlink:hover,
+.hyperlink:visited {
+    -fx-underline: false;
+}
+
+.rating-active {
+    -fx-text-fill: orange;
 }
 
 // === Borders ===
@@ -83,7 +92,8 @@ Label {
 }
 
 .eatery-info,
-.eatery-map {
+.eatery-map,
+.eatery-reviews {
     -fx-padding: 10 0 0 0;
 }
 
