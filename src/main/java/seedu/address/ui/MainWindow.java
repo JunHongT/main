@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -37,7 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     private CommandBox commandBox;
 
     @FXML
-    private StackPane commandBoxPlaceholder;
+    private VBox commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
@@ -46,13 +47,13 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane eateryListPanelPlaceholder;
 
     @FXML
-    private StackPane resultDisplayPlaceholder;
+    private VBox resultDisplayPlaceholder;
 
     @FXML
     private StackPane feedPostListPanelPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private VBox statusbarPlaceholder;
 
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
@@ -153,6 +154,7 @@ public class MainWindow extends UiPart<Stage> {
     private void handleSaveTodo(String pendingCommand) {
         String[] resTokens = pendingCommand.split(":");
         commandBox = new CommandBox(this::executeCommand, resTokens[1]);
+        commandBoxPlaceholder.getChildren().clear();
         commandBoxPlaceholder.getChildren().addAll(commandBox.getRoot());
     }
 
@@ -169,7 +171,7 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            resultDisplay.setFeedbackToUser(commandResult);
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -187,7 +189,7 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            resultDisplay.setFeedbackToUser(e);
             throw e;
         }
     }
