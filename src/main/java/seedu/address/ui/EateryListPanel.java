@@ -20,10 +20,13 @@ public class EateryListPanel extends UiPart<Region> {
     @FXML
     private ListView<Eatery> eateryListView;
 
-    public EateryListPanel(ObservableList<Eatery> eateryList) {
+    private boolean isMainMode;
+
+    public EateryListPanel(ObservableList<Eatery> eateryList, boolean isMainMode) {
         super(FXML);
         eateryListView.setItems(eateryList);
         eateryListView.setCellFactory(listView -> new EateryListViewCell());
+        this.isMainMode = isMainMode;
     }
 
     /**
@@ -38,7 +41,7 @@ public class EateryListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new EateryCard(eatery, getIndex() + 1).getRoot());
+                setGraphic(new EateryCard(eatery, getIndex() + 1, isMainMode).getRoot());
             }
         }
     }
