@@ -32,7 +32,6 @@ import seedu.address.model.eatery.Name;
 import seedu.address.model.eatery.Tag;
 import seedu.address.testutil.TodoEateryBuilder;
 
-
 public class AddTodoCommandParserTest {
     private AddTodoCommandParser parser = new AddTodoCommandParser();
 
