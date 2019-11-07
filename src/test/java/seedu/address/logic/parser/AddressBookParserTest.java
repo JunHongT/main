@@ -29,6 +29,10 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ModeCommand;
+import seedu.address.logic.commands.ReopenCommand;
+import seedu.address.logic.commands.SaveTodoCommand;
+import seedu.address.logic.commands.ShowCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.eatery.Eatery;
 import seedu.address.model.eatery.NameContainsKeywordsPredicate;
@@ -78,6 +82,12 @@ public class AddressBookParserTest {
         assertEquals(new CloseCommand(INDEX_FIRST_EATERY), command);
     }
 
+    @Test public void parseCommand_reopen() throws Exception {
+        ReopenCommand command = (ReopenCommand) parser.parseCommand(
+                ReopenCommand.COMMAND_WORD + " " + INDEX_FIRST_EATERY.getOneBased(), true);
+        assertEquals(new ReopenCommand(INDEX_FIRST_EATERY), command);
+    }
+
     @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD, true) instanceof ExitCommand);
@@ -105,6 +115,19 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_mode() throws Exception {
+        assertTrue(parser.parseCommand(ModeCommand.COMMAND_WORD, true) instanceof ModeCommand);
+        assertTrue(parser.parseCommand(ModeCommand.COMMAND_WORD + " 3", true) instanceof ModeCommand);
+    }
+
+    @Test
+    public void parseCommand_saveTodo() throws Exception {
+        SaveTodoCommand command = (SaveTodoCommand) parser.parseCommand(
+            SaveTodoCommand.COMMAND_WORD + " " + INDEX_FIRST_EATERY.getOneBased(), false);
+        assertEquals(new SaveTodoCommand(INDEX_FIRST_EATERY), command);
+    }
+
+    @Test
     public void parseCommand_addfeed() throws Exception {
         Feed feed = new FeedBuilder().withName(VALID_NAME_EATBOOK).withAddress(VALID_ADDRESS_EATBOOK).build();
         String input = AddFeedCommand.COMMAND_WORD + NAME_DESC_EATBOOK + ADDRESS_DESC_EATBOOK;
@@ -120,6 +143,13 @@ public class AddressBookParserTest {
         DeleteFeedCommand command = (DeleteFeedCommand) parser.parseCommand(
                 DeleteFeedCommand.COMMAND_WORD + NAME_DESC_EATBOOK, true);
         assertEquals(new DeleteFeedCommand(VALID_NAME_EATBOOK), command);
+    }
+
+    @Test
+    public void parseCommand_show() throws Exception {
+        ShowCommand command = (ShowCommand) parser.parseCommand(
+                ShowCommand.COMMAND_WORD + " " + INDEX_FIRST_EATERY.getOneBased(), true);
+        assertEquals(new ShowCommand(INDEX_FIRST_EATERY), command);
     }
 
     @Test
