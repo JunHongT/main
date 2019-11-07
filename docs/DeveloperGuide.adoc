@@ -328,10 +328,10 @@ Step 3: The user can execute `save 1`, indicating to the system the index of eat
 Step 4: The eatery in the todo list will be removed and an add command will be constructed in the `CommandBox` for user to input any necessary fields before adding.
 
 The following sequence diagram shows how the `SaveTodo` command works:
-image::ModeCommandSequenceDiagram.png[]
+image::SaveTodoCommandSequence.png[]
 
 The following activity diagram summarizes what happens when a user executes a new command:
-image::ModeCommandActivity.png[]
+image::SaveTodoCommandActivity.png[]
 
 ==== Design Considerations
 ===== Aspect: How Mode execute
