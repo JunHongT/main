@@ -334,7 +334,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 image::SaveTodoCommandActivity.png[]
 
 ==== Design Considerations
-===== Aspect: How Mode execute
+===== Aspect: How SaveTodo execute
 * **Alternative 1 (current choice):** Construct the commands as a string before displaying to the user.
 ** Pros: User-friendly. User will be able to add the eatery to the main list with minimum effort.
 ** Cons: Unable to save directly to the main list from todo list. Possible situation can be that the user did not `add` the new eatery after executing `saveTodo` command.
