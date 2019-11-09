@@ -295,7 +295,7 @@ Step 2: The user execute `mode` command and the mode of the application will be 
 Step 3: The user can execute `mode` command again, returning the application to `main` mode, showing the items stored in the `main` list.
 
 The following sequence diagram shows how the `mode` command works:
-image::ModeCommandSequenceDiagram.png[]
+image::ModeCommandSequence.png[]
 
 The following activity diagram summarizes what happens when a user executes a new command:
 image::ModeCommandActivity.png[]
