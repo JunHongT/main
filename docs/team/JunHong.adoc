@@ -5,8 +5,6 @@
 
 == PROJECT: EatMe
 
----
-
 == About the project
 
 My team of 4 computing students and I were tasked with enhancing a basic command line interface (CLI) desktop application, AB3,
@@ -21,6 +19,7 @@ EatMe is a *food diary app for people who love good food*, allowing the user to:
 EatMe is optimized for those who like the speed of a Command Line Interface (CLI) while still maintaining the user-friendliness of a Graphical User Interface (GUI).
 
 The image below shows the mockup of our project:
+
 image::Ui.png[]
 
 My main role is the implementation of the todo mode for EatMe.
@@ -72,7 +71,19 @@ It will be inappropriate for the user to add the eatery in the same list as the 
 Therefore, a need for a separate list will be useful.
 |===
 
-Format : `mode`
+Format : `mode` +
+
+Example Usage: +
+
+* User start the application
+
+image::startup.png[]
+* User input `mode`
+
+image::ExecuteMode.png[]
+* Application had switched to todo mode
+
+image::todo.png[]
 
 === SaveTodo Command
 
@@ -86,6 +97,21 @@ Therefore, SaveTodo Command is designed to provide a quick way for the user to a
 |===
 
 Format : `save`
+
+Example Usage: +
+
+* User start the application
+
+image::startup.png[]
+* User execute `mode` command
+
+image::ExecuteMode.png[]
+* User execute `save` with index of eatery he/she wanted to save.
+
+image::ExecuteSave.png[]
+* Application switch back to main mode, displaying incomplete command for user to finish inputting.
+
+image::SaveResult.png[]
 
 == Contributions to the Developer Guide
 
@@ -105,9 +131,11 @@ Step 2: The user execute `mode` command and the mode of the application will be 
 Step 3: The user can execute `mode` command again, returning the application to `main` mode, showing the items stored in the `main` list.
 
 The following sequence diagram shows how the `mode` command works:
+
 image::ModeCommandSequenceDiagram.png[]
 
 The following activity diagram summarizes what happens when a user executes a new command:
+
 image::ModeCommandActivity.png[]
 
 ==== Design Considerations
@@ -136,9 +164,11 @@ Step 3: The user can execute `save 1`, indicating to the system the index of eat
 Step 4: The eatery in the todo list will be removed and an add command will be constructed in the `CommandBox` for user to input any necessary fields before adding.
 
 The following sequence diagram shows how the `SaveTodo` command works:
+
 image::SaveTodoCommandSequence.png[]
 
 The following activity diagram summarizes what happens when a user executes a new command:
+
 image::SaveTodoCommandActivity.png[]
 
 ==== Design Considerations
