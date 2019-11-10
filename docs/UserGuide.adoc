@@ -272,10 +272,11 @@ Examples:
 ==== Saving a todo eatery to the main eatery list : `save`
 
 Remove a todo eatery from the todo list and provides a quick way to add it to the main list of eateries. +
-Format: `save [id]` (saves the eatery to the main list)
+
+Format: `save [index]`
 
 ****
-* Save the eatery at the specified `INDEX`. The index refers to the index number shown in the displayed todo list.
+* Save the eatery at the specified index. The index refers to the index number shown in the displayed todo list.
 * The index *must be a positive integer* 1, 2, 3, ...
 * The eatery will be removed from the todo list after `save` is executed
 * User will be required to input the missing field before the eatery is saved in the main list.
