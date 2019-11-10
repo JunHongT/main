@@ -288,7 +288,7 @@ The mode is determined through the value of a boolean variable named `isMainMode
 
 Given below is an example usage of how the mode command behaves.
 
-Step 1: The user launches the application. Data from `eaterylist` will be fetched and will be initialised in `Main Mode` by default.
+Step 1: The user launches the application. Data from `eaterylist` will be fetched and will be initialised in Main Mode by default.
 
 Step 2: The user execute `mode` command and the mode of the application will be switched to `todo` mode, displaying items in the `todo` list instead.
 
@@ -319,7 +319,7 @@ This command allows the user to save an eatery from the todo list to the main ea
 
 Given below is an example usage of how the SaveTodo Command behaves.
 
-Step 1: The user launches the application. Data from EateryList will be fetched and initialised in main mode by default.
+Step 1: The user launches the application. Data from `EateryList` will be fetched and initialised in main mode by default.
 
 Step 2: The user executes mode command and the mode of the application will be switched to Todo mode, displaying items in the todo list instead.
 
@@ -574,7 +574,6 @@ These instructions only provide a starting point for testers to work on; testers
 
 _{ more test cases ... }_
 
-<<<<<<< HEAD
 === Saving an eatery
 
 . Saving an eatery while eateries are present in todo list.
@@ -597,7 +596,7 @@ _{ more test cases ... }_
 .. Test case: delete 0 +
    Expected: No eatery is deleted. Error details shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: delete, delete x (where x is larger than the list size) _{give more}_ +
-=======
+
 === Deleting an Eatery
 
 . Deleting an `Eatery` while all `Eateries` are listed
@@ -608,7 +607,6 @@ _{ more test cases ... }_
 .. Test case: `delete 0` +
    Expected: No `Eatery` is deleted. Error details shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size, or x is a non-integer) +
->>>>>>> upstream/master
    Expected: Similar to previous.
 
 _{ more test cases to be added }_
