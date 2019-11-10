@@ -46,12 +46,14 @@ public class EateryCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(eatery.getName().fullName);
         address.setText(eatery.getAddress().value);
-        category.setText(eatery.getCategory().getName());
         eatery.getTags().stream()
             .sorted(Comparator.comparing(Tag::getName))
             .forEach(tag -> tags.getChildren().add(new Label(String.format("#%s", tag.getName()))));
-        if (!isMainMode) {
-            category.setText("");
+
+        if (isMainMode) {
+            category.setMinHeight(18);
+            category.setPrefHeight(18);
+            category.setText(eatery.getCategory().getName());
         }
     }
 
