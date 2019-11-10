@@ -281,14 +281,14 @@ image::CloseCommitActivityDiagram.png[]
 // end::close[]
 
 // tag::modeCommand[]
-=== Mode Command feature
+=== Changing Mode of EatMe feature
 ==== Implementation
-Allows the user to toggle between Main mode and Todo mode. It extends 'Command', and once mode had been switched, will affect all other command functions.
-The mode is determined through the value of a boolean variable named 'isMainMode'.
+Allows the user to toggle between Main mode and Todo mode. It extends `Command`, and once mode is switched, all other command functions would be affected.
+The mode is determined through the value of a boolean variable named `isMainMode`.
 
-Given below is an example usage of how the Mode Command behaved.
+Given below is an example usage of how the mode command behaves.
 
-Step 1: The user launches the application. Data from `addressbook` will be fetched and will be initialised as `Main Mode` by default.
+Step 1: The user launches the application. Data from `eaterylist` will be fetched and will be initialised in `Main Mode` by default.
 
 Step 2: The user execute `mode` command and the mode of the application will be switched to `todo` mode, displaying items in the `todo` list instead.
 
@@ -307,25 +307,25 @@ image::ModeCommandActivity.png[]
 ** Cons: An additional factor to check when executing any other commands; Possibility of mis-manipulation of data.
 
 ===== Aspect: Data structure to support Mode Command
-* **Alternative 1 (current choice):** Maintain 2 separate lists for Main mode and Todo Mode.
-** Pros: Data between the 2 modes will be separated apart. Commands executed will only affect data stored in the list for the particular mode.
+* **Alternative 1 (current choice):** Maintain two separate lists for Main mode and Todo Mode.
+** Pros: Data between the two modes will be separated. Commands executed will only affect data stored in the list for the particular mode.
 ** Cons: More effort required for maintenance purposes. Need to make sure that data from main list should not go into todo list, and vice versa
 //end::modeCommand[]
 
 //tag::saveTodoCommand[]
-=== SaveTodo Command feature
+=== Saving Todo Eatery feature
 ==== Implementation
-This command allows the user to save an eatery from the todo list to the main eatery list. It extends 'Command'.
+This command allows the user to save an eatery from the todo list to the main eatery list. It extends `Command`.
 
-Given below is an example usage of how the SaveTodo Command behaved.
+Given below is an example usage of how the SaveTodo Command behaves.
 
-Step 1: The user launches the application. Data from `addressbook` will be fetched and will be initialised as `Main Mode` by default.
+Step 1: The user launches the application. Data from EateryList will be fetched and initialised in main mode by default.
 
-Step 2: The user execute `mode` command and the mode of the application will be switched to `todo` mode, displaying items in the `todo` list instead.
+Step 2: The user executes mode command and the mode of the application will be switched to Todo mode, displaying items in the todo list instead.
 
 Step 3: The user can execute `save 1`, indicating to the system the index of eatery to be saved.
 
-Step 4: The eatery in the todo list will be removed and an add command will be constructed in the `CommandBox` for user to input any necessary fields before adding.
+Step 4: The eatery in the todo list will be removed and an add command will be constructed in the CommandBox for the user to input any necessary fields before adding.
 
 The following sequence diagram shows how the `SaveTodo` command works:
 image::SaveTodoCommandSequence.png[]
@@ -337,12 +337,12 @@ image::SaveTodoCommandActivity.png[]
 ===== Aspect: How SaveTodo execute
 * **Alternative 1 (current choice):** Construct the commands as a string before displaying to the user.
 ** Pros: User-friendly. User will be able to add the eatery to the main list with minimum effort.
-** Cons: Unable to save directly to the main list from todo list. Possible situation can be that the user did not `add` the new eatery after executing `saveTodo` command.
+** Cons: Unable to save directly to the main list from todo list. Possible situation can be that the user did not add the new eatery after executing `saveTodo` command.
 This situation will result in the user requiring to type the whole `add` command on his own as information will not be saved.
 
 * **Alternative 2** Allow eatery to have the same attributes fields as eatery in main list
 ** Pros: As eatery in todo list and main list have the same attributes, it will be possible to `save` the eatery directly to the main list without further input from the user.
-** Cons: User will be required to include additional field when `adding` an eatery in the todo list. Field entered may be irrelevant as user had yet to visit the eatery.
+** Cons: User will be required to include additional field when adding an eatery in the todo list. Field entered may be irrelevant as user had yet to visit the eatery.
 
 ===== Aspect: Data structure to support SaveTodo Command
 * **Alternative 1 (current choice):** No additional data structure is required for `SaveTodo` command
