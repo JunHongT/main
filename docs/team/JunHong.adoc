@@ -7,7 +7,7 @@
 
 == About the project
 
-My team of 4 computing students and I were tasked with enhancing a basic command line interface (CLI) desktop application, AB3,
+My team of 4 computing students and I were tasked with enhancing a basic command line interface (CLI) desktop application, AddressBook 3 (AB3),
 for our software engineering project. We had chose to modify it into a food diary application known as `EatMe`.
 
 EatMe is a *food diary app for people who love good food*, allowing the user to: +
@@ -20,7 +20,7 @@ EatMe is optimized for those who like the speed of a Command Line Interface (CLI
 
 The image below shows the mockup of our project:
 
-image::Ui.png[]
+image::Ui.png[width="600"]
 
 My main role is the implementation of the todo mode for EatMe.
 In the following sections, the enhancement will be described in more details, as well as relevant documentation from user and developer guide.
@@ -62,14 +62,7 @@ We had to update the original AB3 User Guide with instructions for the enhanceme
 
 === Mode Command
 
-This command allows user to toggle between 2 modes: Main mode and Todo mode.
-
-|===
-|Problem leading to the command:
-|Given a situation where the user wish to create an entry for an eatery which he/she had yet to visit.
-It will be inappropriate for the user to add the eatery in the same list as the eateries where the user had visited.
-Therefore, a need for a separate list will be useful.
-|===
+Allows the user to toggle between Main mode and Todo mode.
 
 Format : `mode` +
 
@@ -77,24 +70,17 @@ Example Usage: +
 
 * User start the application
 
-image::startup.png[]
+image::startup.png[width="600"]
 * User input `mode`
 
-image::ExecuteMode.png[]
+image::ExecuteMode.png[width="600"]
 * Application had switched to todo mode
 
-image::todo.png[]
+image::todo.png[width="600"]
 
 === SaveTodo Command
 
-This command remove an eatery from the todo list and provides a quick way to add it to the main list of eateries.
-
-|===
-|Problem leading to the command:
-|Given a situation where the user wish to save an entry from the todo list.
-It will be inconvenient for the user to type the whole add command.
-Therefore, SaveTodo Command is designed to provide a quick way for the user to add the eatery to the main list.
-|===
+This command removes a todo eatery from the todo list and provides a quick way to add it to the main list of eateries. +
 
 Format : `save`
 
@@ -102,16 +88,16 @@ Example Usage: +
 
 * User start the application
 
-image::startup.png[]
+image::startup.png[width="600"]
 * User execute `mode` command
 
-image::ExecuteMode.png[]
+image::ExecuteMode.png[width="600"]
 * User execute `save` with index of eatery he/she wanted to save.
 
-image::ExecuteSave.png[]
+image::ExecuteSave.png[width="600"]
 * Application switch back to main mode, displaying incomplete command for user to finish inputting.
 
-image::SaveResult.png[]
+image::SaveResult.png[width="600"]
 
 == Contributions to the Developer Guide
 
@@ -132,11 +118,11 @@ Step 3: The user can execute `mode` command again, returning the application to 
 
 The following sequence diagram shows how the `mode` command works:
 
-image::ModeCommandSequenceDiagram.png[]
+image::ModeCommandSequenceDiagram.png[width="600"]
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-image::ModeCommandActivity.png[]
+image::ModeCommandActivity.png[width="600"]
 
 ==== Design Considerations
 ===== Aspect: How Mode execute
@@ -165,11 +151,11 @@ Step 4: The eatery in the todo list will be removed and an add command will be c
 
 The following sequence diagram shows how the `SaveTodo` command works:
 
-image::SaveTodoCommandSequence.png[]
+image::SaveTodoCommandSequence.png[width="600"]
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-image::SaveTodoCommandActivity.png[]
+image::SaveTodoCommandActivity.png[width="600"]
 
 ==== Design Considerations
 ===== Aspect: How Mode execute
