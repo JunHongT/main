@@ -49,8 +49,7 @@ e.g. typing `help` and pressing kbd:[Enter] will open the help window.
 . Some example commands you can try:
 
 * `add \n Two Chefs Eating Place \a 116 Commonwealth Cres, #01-129 \c Chinese` : Adds an eatery named Two Chefs Eating Place with the specified address and category.
-* `review \n Two Chefs Eating Place \d Nice Condensed Milk Pork Ribs \p 15 \r 4 \w 23/10/2019` : Adds a review to Two Chefs Eating Place with the specified description, price, rating and date.
-* `random` : Shows a random eatery - Useful if you can't decide what to eat!
+* `review 1 \d Nice Condensed Milk Pork Ribs \p 15 \r 4 \w 23/10/2019` : Adds a review to Two Chefs Eating Place with the specified description, price, rating and date.
 * `exit` : Exits the app.
 
 These are just a few of the commands you can execute on EatMe. Refer to <<Features>> for the full list of available commands and their details.
@@ -245,11 +244,6 @@ Examples:
 
 * `removetag 2 \t hawker`
 
-===== Getting a random eatery: `random` [Coming in v2.0]
-
-Shows a completely random restaurant -- Useful in case you cannot decide what to eat! +
-Format: `random`
-
 ===== Viewing an eatery: `show`
 
 Shows an eatery with all its details - address, category, tags, reviews, and a map of its location.
@@ -294,12 +288,13 @@ Format: `stats`
 
 In Todo mode, users will be able to manipulate eateries which they are yet to visit. +
 
-==== Toggling between main and todo modes: `mode`
+==== Working with Eateries
+===== Toggling between main and todo modes: `mode`
 
 Toggles between main and todo modes. +
 Format: `mode`
 
-==== Adding an eatery: `add`
+===== Adding an eatery: `add`
 
 Adds an eatery to the todo list. +
 Format: `add \n [name of eatery] \a [address] {\t [tags]...}`
@@ -309,7 +304,7 @@ Examples:
 * `add \n Two Chefs Eating Place \a 116 Commonwealth Cres, #01-129`
 * `add \n Two Chefs Eating Place \a 116 Commonwealth Cres, #01-129 \t good-for-groups \t non-aircon`
 
-==== Saving a todo eatery to the main eatery list : `save`
+===== Saving a todo eatery to the main eatery list : `save`
 
 Remove a todo eatery from the todo list and provides a quick way to add it to the main list of eateries. +
 
@@ -329,9 +324,7 @@ Examples:
 ** Application will toggle to Main
 ** `add` command will be constructed, allowing user to just input missing fields.
 
-==== Finding an eatery: `find`
-
-*Coming in v1.4*
+===== Finding an eatery: `find`
 
 Finds an eatery based on name or tag. +
 Format: `find \n [name of eatery]` or `find \t [tag]`
@@ -341,7 +334,7 @@ Examples:
 * `find \n Two Chefs Eating Place`
 * `find \t Chinese`
 
-==== Tagging an eatery: `addtag`
+===== Tagging an eatery: `addtag`
 
 Adds tags to an eatery. +
 Format: `addtag [index] \t [tags]...`
@@ -354,7 +347,7 @@ Examples:
 
 * `addtag 2 \t hawker good-for-sharing`
 
-==== Removing tags from an eatery: `removetag`
+===== Removing tags from an eatery: `removetag`
 
 Removes tags from an eatery. +
 Format: `removetag [index] \t [tags]...`
@@ -363,7 +356,7 @@ Examples:
 
 * `removetag 2 \t hawker`
 
-==== Viewing an eatery: `show`
+===== Viewing an eatery: `show`
 
 Shows an eatery with all its details - address, tags, reviews, and a map of its location.
 
@@ -379,13 +372,13 @@ Examples:
 
 * `show 2`
 
-==== Deleting an eatery: `delete`
+===== Deleting an eatery: `delete`
 
 Delete an eatery in the application. +
 Format: `delete [index]`
 
 Examples:
-* `delete 1`
+ `delete 1`
 
 === News Feed
 
