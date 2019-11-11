@@ -267,7 +267,7 @@ Examples:
 Deletes an eatery in the application. +
 Format: `delete [index]`
 
-Example: 
+Example:
 
 * `delete 1`
 
@@ -352,7 +352,7 @@ Format: `delete [index]`
 Examples:
 
  * `delete 1`
- 
+
 ===== Saving a todo eatery to the main eatery list : `save`
 
 Remove a todo eatery from the todo list and provides a quick way to add it to the main list of eateries. +
