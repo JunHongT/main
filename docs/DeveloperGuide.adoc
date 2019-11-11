@@ -1026,10 +1026,6 @@ These instructions only provide a starting point for testers to work on; testers
 
 _{ more test cases ... }_
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> upstream/master
 === Saving an eatery
 
 . Saving an eatery while eateries are present in todo list.
@@ -1052,11 +1048,7 @@ _{ more test cases ... }_
 .. Test case: delete 0 +
    Expected: No eatery is deleted. Error details shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: delete, delete x (where x is larger than the list size) _{give more}_ +
-<<<<<<< HEAD
-=======
-=======
 
->>>>>>> upstream/master
 === Deleting an Eatery
 
 . Deleting an `Eatery` while all `Eateries` are listed
@@ -1067,7 +1059,6 @@ _{ more test cases ... }_
 .. Test case: `delete 0` +
    Expected: No `Eatery` is deleted. Error details shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size, or x is a non-integer) +
->>>>>>> upstream/master
    Expected: Similar to previous.
 
 _{ more test cases to be added }_
