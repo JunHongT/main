@@ -20,7 +20,7 @@ EatMe is optimized for those who like the speed of a Command Line Interface (CLI
 
 The image below shows the mockup of our project:
 
-image::Ui.png[width="600"]
+image::Ui.png[width="500"]
 
 My main role is the implementation of the todo mode for EatMe.
 In the following sections, the enhancement will be described in more details, as well as relevant documentation from user and developer guide.
