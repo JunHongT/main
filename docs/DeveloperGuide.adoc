@@ -610,16 +610,6 @@ image::ReopenCommitActivityDiagram.png[]
 ** Cons: Requires proper handling of individual data structures to ensure each list is maintained and updated correctly.
 
 // tag::modeCommand[]
-<<<<<<< HEAD
-=== Mode Command feature
-==== Implementation
-Allows the user to toggle between Main mode and Todo mode. It extends 'Command', and once mode had been switched, will affect all other command functions.
-The mode is determined through the value of a boolean variable named 'isMainMode'.
-
-Given below is an example usage of how the Mode Command behaved.
-
-Step 1: The user launches the application. Data from `addressbook` will be fetched and will be initialised as `Main Mode` by default.
-=======
 === Changing Mode of EatMe feature
 ==== Implementation
 Allows the user to toggle between Main mode and Todo mode. It extends `Command`, and once mode is switched, all other command functions would be affected.
@@ -628,7 +618,6 @@ The mode is determined through the value of a boolean variable named `isMainMode
 Given below is an example usage of how the mode command behaves.
 
 Step 1: The user launches the application. Data from `eaterylist` will be fetched and will be initialised in Main Mode by default.
->>>>>>> upstream/master
 
 Step 2: The user execute `mode` command and the mode of the application will be switched to `todo` mode, displaying items in the `todo` list instead.
 
