@@ -88,12 +88,12 @@ Format: `clear`
 // tag::load[]
 ==== Load eateries from another user profile: `load`
 
-Loads eateries from another user profile. 
+Loads eateries from another user profile.
 
 EatMe allows you to share eatery data with your friends by simply transferring your user profile.
 Your user profile is a file that ends with `.json` and can be found in the same place where you saved the EatMe app.
 
-Did a friend pass you their user profile? 
+Did a friend pass you their user profile?
 Simply place their file where you saved the EatMe app, and execute this command with their username to view their data.
 
 Format: `load \u [username]`
@@ -273,8 +273,8 @@ image::DeleteReviewCommand.png[width=""790"]
 // tag::close[]
 ===== Marking an eatery as closed: `close`
 
-Closes an eatery if the eatery no longer exists. 
-The eatery will still be listed, but will be highlighted in red to inform you that the eatery no longer exists. 
+Closes an eatery if the eatery no longer exists.
+The eatery will still be listed, but will be highlighted in red to inform you that the eatery no longer exists.
 In the case that you accidentally closed the wrong eatery or the eatery reopens, the `reopen` command does the opposite of `close`.
 
 Format: `close [index]`
