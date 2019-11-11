@@ -28,10 +28,14 @@ In the following sections, the enhancement will be described in more details, as
 == Summary of contributions
 This section show summary of my contribution to the team project.
 
-* *Major enhancement*: added *the ability to toggle between modes and SaveTodo Command*
-** What it does: allows the user to toggle into `todo` mode, allowing user to add eateries which they had yet to visit, serving as a bucket list. In addition, user will also be able to save an eatery after visiting without needing to type the whole command.
-** Justification: This feature improves the product significantly because a user can now keep a separate list of eateries which the user wish to go.
-This allows a broader selection of eateries when the user decide on where to go. The application had also reduced the hassle of needing to retype the whole command to record the eatery into the main list through `save` command.
+* *Major enhancement*: added *the ability to toggle between modes and save eatery from todo mode to main mode*
+** What it does: allows the user to toggle into `todo` mode, allowing user to add eateries which they had yet to visit, serving as a bucket list.
+In addition, user will also be able to save an eatery after visiting without needing to type the whole command as the application will provide a quick way for user to fill in the missing fields.
+
+** Justification: Through the implementation of todo mode, a user can now keep a separate list of eateries which the user wish to go. This will be useful for the user as many might wish to keep a list of eateries which they hope to visit.
+With Todo mode, user will be able to have a broader selection of eateries when deciding on where to go.
+With the implementation of the Save Command, the application had also reduced the hassle of needing to retype the whole command to record the eatery into the main list through `save` command.
+
 ** Highlights: This enhancement affects existing commands and commands to be added in future. After implementation, the team and I now need to consider 2 different states of the application as we proceed in designing future features.
 ** Credits: Both `mode` command and `SaveTodo` command are based on the AB3 template provided.
 
