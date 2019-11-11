@@ -21,6 +21,8 @@ By: `Team AY1920S1-CS2103T-W11-3`      Since: `September 2019`      Licence: `MI
 
 EatMe is a *food diary app for people who love good food*. It helps you manage places you have been to, keep track of your experience and expenditure, and even keep you up-to-date with the latest food trends and events!
 
+EatMe comes with two different modes: *main* and *todo* modes. In the main mode, you will be able to manipulate eateries that you have visited before. In the todo mode, however, you will be able to manipulate eateries that you have yet to visit but are planning to visit in the future.
+
 EatMe is optimized for those who like the speed of a Command Line Interface (CLI) while still maintaining the user-friendliness of a Graphical User Interface (GUI). *Interested to keep track of your favorite food places with maximum efficiency? Try EatMe today!* Jump to the <<Quick Start>> to get started.
 
 == About
@@ -59,11 +61,11 @@ These are just a few of the commands you can execute on EatMe. Refer to <<Featur
 ====
 *Command Format*
 
-* Items in square brackets are the parameters to be supplied by the user. For example, in `add \n [name of eatery]`, `[name of eatery]` is a parameter which can be used as `add n\ Two Chefs Eating Place`.
+* Items in square brackets are the parameters to be supplied by the user. For example, in `add \n [name of eatery]`, `[name of eatery]` is a parameter which can be used as `add \n Two Chefs Eating Place`.
 * Items in curly brackets are optional parameters. For example, in `add \n [name of eatery] \a [address] \c [category] {\t [tags]...}`, `{\t [tags]...}` is an optional parameter that the user can choose to supply if he/she wishes to add certain tags to the eatery.
 * Items with `…` after them can be used multiple times including zero times e.g. `{nbsp}` can be used as (i.e. 0 times), `\t non-aircon`, `\t good-for-groups \t non-aircon`, etc.
 * Parameters can be in any order. For example, if the command specifies `\n [name of eatery] \a [address] \c [category]`, `\a [address] \n [name of eatery] \c [category]` is also acceptable.
-* For parameters requiring `index`, `index` refers to the index number shown in the displayed eatery or review list. The index *must be a positive integer* 1, 2, 3, ... .
+* For parameters requiring `index`, `index` refers to the index number shown in the displayed main or todo eatery list, or review list. The index *must be a positive integer* 1, 2, 3, ... .
 ====
 
 === General
@@ -80,22 +82,27 @@ Format: `list`
 
 Format: `clear`
 
-// tag::import[]
-==== Importing eateries: `import`
+// tag::load[]
+==== Load eateries: `load`
 
-Imports eateries from a json file. +
-Format: `import \u [filename]`
+Loads eateries from a json file. +
+Format: `load \u [filename]`
 
 ****
-* Imports eatery data from the specified json file.
+* Loads eatery data from the specified json file.
 * The user can type in the filename without the ".json" extension, however, the file *must* still be a json file.
 ****
 
 Examples:
 
-* `import \u john`
-* `import \u john.json`
-// end::import[]
+* `load \u john`
+* `load \u john.json`
+// end::load[]
+
+===== Toggling between main and todo modes: `mode`
+
+Toggles between main and todo modes. +
+Format: `mode`
 
 ==== Exit the app: `exit`
 
@@ -286,14 +293,9 @@ Format: `stats`
 
 === Todo Mode
 
-In Todo mode, users will be able to manipulate eateries which they are yet to visit. +
+In Todo mode, users will be able to manipulate eateries which they have yet to visit. +
 
 ==== Working with Eateries
-===== Toggling between main and todo modes: `mode`
-
-Toggles between main and todo modes. +
-Format: `mode`
-
 ===== Adding an eatery: `add`
 
 Adds an eatery to the todo list. +
