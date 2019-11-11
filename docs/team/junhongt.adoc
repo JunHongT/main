@@ -74,13 +74,13 @@ Example Usage: +
 
 * User start the application
 
-image::startup.png[width="600"]
+image::startup.png[width="500"]
 * User input `mode`
 
-image::ExecuteMode.png[width="600"]
+image::ExecuteMode.png[width="500"]
 * Application had switched to todo mode
 
-image::todo.png[width="600"]
+image::todo.png[width="500"]
 
 === SaveTodo Command
 
@@ -92,16 +92,16 @@ Example Usage: +
 
 * User start the application
 
-image::startup.png[width="600"]
+image::startup.png[width="500"]
 * User execute `mode` command
 
-image::ExecuteMode.png[width="600"]
+image::ExecuteMode.png[width="500"]
 * User execute `save` with index of eatery he/she wanted to save.
 
-image::ExecuteSave.png[width="600"]
+image::ExecuteSave.png[width="500"]
 * Application switch back to main mode, displaying incomplete command for user to finish inputting.
 
-image::SaveResult.png[width="600"]
+image::SaveResult.png[width="500"]
 
 == Contributions to the Developer Guide
 
@@ -122,11 +122,11 @@ Step 3: The user can execute `mode` command again, returning the application to 
 
 The following sequence diagram shows how the `mode` command works:
 
-image::ModeCommandSequenceDiagram.png[width="600"]
+image::ModeCommandSequence.png[width="500"]
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-image::ModeCommandActivity.png[width="600"]
+image::ModeCommandActivity.png[width="500"]
 
 ==== Design Considerations
 ===== Aspect: How Mode execute
@@ -155,11 +155,11 @@ Step 4: The eatery in the todo list will be removed and an add command will be c
 
 The following sequence diagram shows how the `SaveTodo` command works:
 
-image::SaveTodoCommandSequence.png[width="600"]
+image::SaveTodoCommandSequence.png[width="500"]
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-image::SaveTodoCommandActivity.png[width="600"]
+image::SaveTodoCommandActivity.png[width="500"]
 
 ==== Design Considerations
 ===== Aspect: How Mode execute
